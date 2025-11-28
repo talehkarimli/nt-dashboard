@@ -77,10 +77,13 @@ export function TopPageVisits() {
                       }
                     }
                     if (x == null || y == null || height == null) return null
+                    const xNum = typeof x === 'number' ? x : parseFloat(x)
+                    const yNum = typeof y === 'number' ? y : parseFloat(y)
+                    const heightNum = typeof height === 'number' ? height : parseFloat(height)
                     return (
                       <text
-                        x={x + 8}
-                        y={y + height / 2}
+                        x={xNum + 8}
+                        y={yNum + heightNum / 2}
                         alignmentBaseline="central"
                         fill="hsl(var(--foreground))"
                         fontSize={14}
