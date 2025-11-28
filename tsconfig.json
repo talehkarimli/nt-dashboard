@@ -1,12 +1,24 @@
 {
   "compilerOptions": {
+    "target": "ES2020",
+    "lib": ["ES2020", "ES2017", "ES2015", "ES2015.Iterable", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "types": ["vite/client"],
+    "jsx": "react-jsx",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "noEmit": true,
+    "isolatedModules": true,
+    "allowImportingTsExtensions": false
   },
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }

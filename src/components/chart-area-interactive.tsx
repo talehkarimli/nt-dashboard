@@ -142,7 +142,7 @@ export function ChartAreaInteractive() {
     } else if (timeRange === "7d") {
       daysToSubtract = 7
     }
-    const startDate = new Date(referenceDate)
+    const startDate = new Date(referenceDate.getTime())
     startDate.setDate(startDate.getDate() - daysToSubtract)
     return date >= startDate
   })

@@ -23,7 +23,7 @@ const generateDates = () => {
   const startDate = new Date(2025, 9, 28) // October 28, 2025 (month is 0-indexed)
   const endDate = new Date(2025, 10, 27) // November 27, 2025
 
-  for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+  for (let d = new Date(startDate.getTime()); d <= endDate; d.setDate(d.getDate() + 1)) {
     const dateStr = d.toISOString().split('T')[0] // Format: YYYY-MM-DD
     dates.push({
       date: dateStr,
@@ -66,7 +66,7 @@ export function IdentificationChart() {
       return true
     }
 
-    const startDate = new Date(referenceDate)
+    const startDate = new Date(referenceDate.getTime())
     startDate.setDate(startDate.getDate() - daysToSubtract)
 
     return date >= startDate
