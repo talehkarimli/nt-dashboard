@@ -150,7 +150,7 @@ export function ChartAreaInteractive() {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between gap-2">
-        <h2 className="text-xl font-semibold">Identification types per day</h2>
+        <h2 className="text-base font-semibold">Identification types per day</h2>
         <Select value={timeRange} onValueChange={setTimeRange}>
           <SelectTrigger
             className="w-[160px] rounded-lg"

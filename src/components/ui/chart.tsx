@@ -309,7 +309,7 @@ const ChartLegendContent = React.forwardRef<
                     }}
                   />
                 )}
-                <span className="text-sm">{itemConfig?.label}</span>
+                <span className="text-sm font-normal">{itemConfig?.label}</span>
               </div>
             )
           })}

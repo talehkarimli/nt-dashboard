@@ -30,7 +30,7 @@ export function ProfilesByState() {
   return (
     <div className="space-y-4 min-w-0">
       <div className="flex items-center gap-2">
-        <h2 className="text-xl font-semibold">Profiles by state</h2>
+        <h2 className="text-base font-semibold">Profiles by state</h2>
       </div>
       <Card className="shadow-none overflow-hidden">
         <CardContent className="p-3 md:p-6 overflow-hidden">

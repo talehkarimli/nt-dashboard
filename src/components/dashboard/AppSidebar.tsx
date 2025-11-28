@@ -103,7 +103,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                     <ChevronDown className="ml-auto size-4" />
                   </SidebarMenuButton>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-56">
+                <DropdownMenuContent className="w-[var(--radix-dropdown-menu-trigger-width)]">
                   <DropdownMenuItem>
                     <span>Website Settings</span>
                   </DropdownMenuItem>
@@ -166,44 +166,48 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarContent>
       <SidebarFooter>
         {/* Subscription Limit */}
-        <div className="flex justify-center py-3 mb-2">
-          <div className="rounded-lg border bg-card p-3" style={{ width: '224px' }}>
-            <div className="flex flex-col gap-2">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-medium text-muted-foreground">
-                  Credits
-                </span>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <button 
-                      type="button"
-                      className="inline-flex items-center justify-center rounded-md text-muted-foreground/60 hover:text-muted-foreground transition-colors"
-                    >
-                      <Info className="h-3.5 w-3.5" />
-                      <span className="sr-only">Credits information</span>
-                    </button>
-                  </TooltipTrigger>
-                  <TooltipContent side="top" className="max-w-xs" sideOffset={5}>
-                    <p className="text-xs">
-                      Credits are used to track your usage across all features. Each action consumes a certain amount of credits based on complexity and resource requirements.
-                    </p>
-                  </TooltipContent>
-                </Tooltip>
-              </div>
-              <div className="flex items-center justify-between">
-                <div className="h-2 flex-1 rounded-full bg-muted overflow-hidden mr-3">
-                  <div 
-                    className="h-full bg-primary transition-all" 
-                    style={{ width: '30%' }}
-                  />
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <div className="w-full rounded-lg border bg-card p-3">
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-medium text-muted-foreground">
+                    Credits
+                  </span>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <button
+                        type="button"
+                        className="inline-flex items-center justify-center rounded-md text-muted-foreground/60 hover:text-muted-foreground transition-colors"
+                      >
+                        <Info className="h-3.5 w-3.5" />
+                        <span className="sr-only">Credits information</span>
+                      </button>
+                    </TooltipTrigger>
+                    <TooltipContent side="top" className="max-w-xs" sideOffset={5}>
+                      <p className="text-xs">
+                        Credits are used to track your usage across all features. Each
+                        action consumes a certain amount of credits based on complexity
+                        and resource requirements.
+                      </p>
+                    </TooltipContent>
+                  </Tooltip>
                 </div>
-                <span className="text-xs font-semibold tabular-nums">
-                  300 / 1,000
-                </span>
+                <div className="flex items-center justify-between">
+                  <div className="h-2 flex-1 rounded-full bg-muted overflow-hidden mr-3">
+                    <div
+                      className="h-full bg-primary transition-all"
+                      style={{ width: "30%" }}
+                    />
+                  </div>
+                  <span className="text-xs font-semibold tabular-nums">
+                    300 / 1,000
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
+          </SidebarMenuItem>
+        </SidebarMenu>
         <NavUser user={data.user} />
       </SidebarFooter>
     </Sidebar>

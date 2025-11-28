@@ -75,7 +75,7 @@ export function IdentificationChart() {
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2">
-        <h2 className="text-xl font-semibold">Identification types per day</h2>
+        <h2 className="text-base font-semibold">Identification types per day</h2>
       </div>
       
       <Card className="shadow-none">

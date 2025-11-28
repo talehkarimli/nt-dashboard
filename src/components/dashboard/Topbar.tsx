@@ -13,6 +13,14 @@ import { SidebarTrigger, useSidebar } from "@/components/ui/sidebar"
 import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog"
 
 const pageNames: Record<string, string> = {
   '/': 'Dashboard',
@@ -24,9 +32,27 @@ const pageNames: Record<string, string> = {
 
 export function Topbar() {
   const [scriptEnabled, setScriptEnabled] = useState(true)
+  const [showDisableDialog, setShowDisableDialog] = useState(false)
   const location = useLocation()
   const currentPage = pageNames[location.pathname] || 'Dashboard'
   const { toggleSidebar } = useSidebar()
+
+  const handleToggleChange = (checked: boolean) => {
+    if (checked) {
+      setScriptEnabled(true)
+    } else {
+      setShowDisableDialog(true)
+    }
+  }
+
+  const handleConfirmDisable = () => {
+    setScriptEnabled(false)
+    setShowDisableDialog(false)
+  }
+
+  const handleCancelDisable = () => {
+    setShowDisableDialog(false)
+  }
 
   return (
     <header className="flex h-16 shrink-0 items-center gap-2 justify-between">
@@ -64,13 +90,32 @@ export function Topbar() {
           <Switch 
             id="script-status"
             checked={scriptEnabled}
-            onCheckedChange={setScriptEnabled}
+            onCheckedChange={handleToggleChange}
           />
           <span className="hidden sm:inline text-sm font-normal">
             {scriptEnabled ? "Enabled" : "Disabled"}
           </span>
         </div>
       </div>
+
+      <Dialog open={showDisableDialog} onOpenChange={setShowDisableDialog}>
+        <DialogContent className="sm:max-w-lg">
+          <DialogHeader>
+            <DialogTitle>Are you sure?</DialogTitle>
+            <DialogDescription>
+              If you do this, you will not be able to identify visitors on your website.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button variant="outline" onClick={handleCancelDisable} className="w-full sm:w-auto">
+              Cancel
+            </Button>
+            <Button variant="destructive" onClick={handleConfirmDisable} className="w-full sm:w-auto">
+              Disable
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </header>
   )
 }

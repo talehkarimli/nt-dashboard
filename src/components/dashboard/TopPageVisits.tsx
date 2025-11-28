@@ -1,9 +1,6 @@
 import { Bar, BarChart, CartesianGrid, LabelList, XAxis, YAxis } from "recharts"
 
-import {
-  Card,
-  CardContent,
-} from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import {
   ChartConfig,
   ChartContainer,
@@ -12,11 +9,11 @@ import {
 } from "@/components/ui/chart"
 
 const chartData = [
-  { page: "/about", visits: 1245 },
-  { page: "/pricing", visits: 892 },
-  { page: "/contact", visits: 654 },
-  { page: "/blog", visits: 432 },
-  { page: "/home", visits: 321 },
+  { page: "/about", visits: 1245, url: "/about" },
+  { page: "/pricing", visits: 892, url: "/pricing" },
+  { page: "/contact", visits: 654, url: "/contact" },
+  { page: "/blog", visits: 432, url: "/blog" },
+  { page: "/home", visits: 321, url: "/" },
 ]
 
 const chartConfig = {
@@ -30,11 +27,14 @@ export function TopPageVisits() {
   return (
     <div className="space-y-4 min-w-0">
       <div className="flex items-center gap-2">
-        <h2 className="text-xl font-semibold">Top page visits</h2>
+        <h2 className="text-base font-semibold">Top page visits</h2>
       </div>
       <Card className="shadow-none overflow-hidden">
         <CardContent className="p-3 md:p-6 overflow-hidden">
-          <ChartContainer config={chartConfig} className="h-[250px] w-full overflow-hidden">
+          <ChartContainer
+            config={chartConfig}
+            className="h-[250px] w-full overflow-hidden"
+          >
             <BarChart
               accessibilityLayer
               data={chartData}
@@ -66,10 +66,31 @@ export function TopPageVisits() {
               >
                 <LabelList
                   dataKey="page"
-                  position="insideLeft"
-                  offset={8}
-                  className="fill-foreground"
+                  className="fill-foreground cursor-pointer"
                   fontSize={14}
+                  content={(props) => {
+                    const { x, y, height, value, index } = props
+                    const item = chartData[index as number]
+                    const handleClick = () => {
+                      if (item?.url) {
+                        window.location.href = item.url
+                      }
+                    }
+                    if (x == null || y == null || height == null) return null
+                    return (
+                      <text
+                        x={x + 8}
+                        y={y + height / 2}
+                        alignmentBaseline="central"
+                        fill="hsl(var(--foreground))"
+                        fontSize={14}
+                        style={{ cursor: item?.url ? "pointer" : "default" }}
+                        onClick={handleClick}
+                      >
+                        {value}
+                      </text>
+                    )
+                  }}
                 />
                 <LabelList
                   dataKey="visits"

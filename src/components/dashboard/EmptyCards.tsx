@@ -1,5 +1,7 @@
 import { TopPageVisits } from "./TopPageVisits"
 import { ProfilesByState } from "./ProfilesByState"
+import { EventTypes } from "./EventTypes"
+import { VisitorTypes } from "./VisitorTypes"
 
 export function EmptyCards() {
   return (
@@ -12,6 +14,16 @@ export function EmptyCards() {
       {/* Profiles by state */}
       <div className="min-w-0">
         <ProfilesByState />
+      </div>
+
+      {/* Event types pie chart */}
+      <div className="min-w-0">
+        <EventTypes />
+      </div>
+
+      {/* Visitor types pie chart */}
+      <div className="min-w-0">
+        <VisitorTypes />
       </div>
     </div>
   )

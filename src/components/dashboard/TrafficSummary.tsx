@@ -23,7 +23,7 @@ export function TrafficSummary() {
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2">
-        <h2 className="text-xl font-semibold">Traffic summary</h2>
+        <h2 className="text-base font-semibold">Traffic summary</h2>
       </div>
       
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
